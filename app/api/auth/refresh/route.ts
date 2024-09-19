@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const payload = verifyRefreshToken(refreshToken);
+    const payload = await verifyRefreshToken(refreshToken);
 
     if (!payload) {
       return NextResponse.json(
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const newAccessToken = generateAccessToken(user.id);
+    const newAccessToken = await generateAccessToken(user.id);
     const response = NextResponse.json({ accessToken: newAccessToken });
 
     response.cookies.set("accessToken", newAccessToken, {
