@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -17,6 +18,7 @@ export default function Signup() {
     });
 
     if (response.ok) {
+      toast.success("User created successfully");
       router.push("/login");
     } else {
       const data = await response.json();

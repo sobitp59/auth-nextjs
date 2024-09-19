@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -17,10 +18,11 @@ export default function Login() {
     });
 
     if (response.ok) {
+      toast.success("Logged in successfully");
       router.push("/dashboard");
     } else {
       const data = await response.json();
-      alert(data.message);
+      toast.success(data.message);
       console.log(data.message);
     }
   };
