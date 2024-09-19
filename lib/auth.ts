@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 
 import { jwtVerify, SignJWT } from "jose";
@@ -48,7 +48,7 @@ export async function verifyAccessToken(
   try {
     const { payload } = await jwtVerify(token, JWT_SECRET);
     return payload as { userId: string };
-  } catch (error) {
+  } catch (_) {
     return null;
   }
 }
@@ -70,7 +70,7 @@ export async function verifyRefreshToken(
   try {
     const { payload } = await jwtVerify(token, JWT_REFRESH_SECRET);
     return payload as { userId: string };
-  } catch (error) {
+  } catch (_) {
     return null;
   }
 }
