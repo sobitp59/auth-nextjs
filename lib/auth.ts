@@ -48,7 +48,7 @@ export async function verifyAccessToken(
   try {
     const { payload } = await jwtVerify(token, JWT_SECRET);
     return payload as { userId: string };
-  } catch (_) {
+  } catch {
     return null;
   }
 }
@@ -70,7 +70,7 @@ export async function verifyRefreshToken(
   try {
     const { payload } = await jwtVerify(token, JWT_REFRESH_SECRET);
     return payload as { userId: string };
-  } catch (_) {
+  } catch {
     return null;
   }
 }
